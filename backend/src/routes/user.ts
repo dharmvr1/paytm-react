@@ -152,3 +152,15 @@ userRouter.get("/bulk", AuthMiddleware, async (req: Request, res: Response) => {
     });
   }
 });
+
+userRouter.get('/profile',AuthMiddleware,async(req,res)=>{
+  const userId=req.userId
+  const user=await client.user.findFirst({
+    where:{id:parseInt(userId)}
+  })
+  if(user){
+    res.status(200).json({
+      message:user
+    })
+  }
+})

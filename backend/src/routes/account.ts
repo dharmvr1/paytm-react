@@ -24,7 +24,7 @@ accountRouter.get("/balance", AuthMiddleware, async (req, res) => {
 
 accountRouter.post("/transfer", AuthMiddleware, async (req, res) => {
   const { to, amount } = req.body;
-
+  console.log(req.body)
   if (parseInt(to) === parseInt(req.userId)) {
     res.status(403).json({ message: "self transaction is not possible" });
     return;
